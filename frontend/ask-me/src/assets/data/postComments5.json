@@ -1,0 +1,20 @@
+{
+  "comments":[
+    {
+      "commentId":11,
+      "commentText": "Is this bear already on the Wall Street?",
+      "date": "03 March 2020",
+      "userId": 4,
+      "username": "thaorecharu"
+    },
+    {
+      "commentId":12,
+      "commentText": "Tell us the latest business shock news?",
+      "date": "04 March 2020",
+      "userId": 3,
+      "username": "gauravshegokar"
+    }
+  ]
+}
+
+

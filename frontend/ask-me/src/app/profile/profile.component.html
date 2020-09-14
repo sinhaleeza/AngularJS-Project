@@ -1,0 +1,152 @@
+<table>
+  <tr>
+    <td style="padding: 20px">
+      <div *ngIf="profileData">
+        <mat-card class="example-card" style="border-radius: .5rem!important;">
+          <img src="assets/images/profileDetails.png" style="height: 80px;width: 80px;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>User Details</span>
+              <br><br>
+            </mat-card-title>
+            <mat-card-subtitle><b> Username : {{profileData.username}}</b></mat-card-subtitle>
+            <!-- <mat-card-subtitle><b> User Id : {{profileData.userId}}</b></mat-card-subtitle> -->
+            <mat-card-subtitle><b> First Name : {{profileData.firstname}}</b></mat-card-subtitle>
+            <mat-card-subtitle><b> Last Name : {{profileData.lastname}}</b></mat-card-subtitle>
+            <mat-card-subtitle><b> Joined on : {{profileData.dateJoined}}</b></mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </td>
+    <td style="padding: 20px">
+      <div *ngIf="subscribedChannelsData">
+        <mat-card class="example-card" style="border-radius: .5rem!important;">
+          <img src="assets/images/subscribedChannels.png" style="height: 80px;width: 80px;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>User Subscribed Channels</span>
+              <br><br>
+            </mat-card-title>
+            <mat-card-subtitle *ngFor="let subscribedChannel of subscribedChannelsData.subscribedChannels">
+              <a href="/posts?channelId={{subscribedChannel.channelId}}">{{ subscribedChannel.channelName}}</a>
+              <!-- <b> {{subscribedChannel.channelName}}</b><br> -->
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </td>
+    <td style="padding: 20px" hidden=true>
+      <div *ngIf="interestsData">
+        <mat-card class="example-card" style="border-radius: .5rem!important;">
+          <img src="assets/images/userInterests.jpg" style="height: 80px;width: 80px;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>User Interests</span>
+              <br><br>
+            </mat-card-title>
+            <mat-card-subtitle *ngFor="let interest of interestsData.interests">
+              <b> Tag Id :{{interest.tagId}} &nbsp;&nbsp; Tag Name :{{interest.tagName}}</b><br>
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </td>
+    <td style="padding: 20px">
+      <div *ngIf="ownedChannelsData">
+        <mat-card class="example-card" style="border-radius: .5rem!important;">
+          <img src="assets/images/ownedChannels.png" style="height: 80px;width: 80px;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>User Owned Channels</span>
+              <br><br>
+            </mat-card-title>
+            <mat-card-subtitle *ngFor="let ownedChannel of ownedChannelsData.ownedChannels">
+              <a href="/posts?channelId={{ownedChannel.channelId}}">{{ ownedChannel.channelName}}</a>
+              <!--b> Channel Id :{{ownedChannel.channelId}} &nbsp;&nbsp;&nbsp; Channel Name :{{ownedChannel.channelName}}</b--><br>
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </td>
+
+    <td style="padding: 20px">
+      <div *ngIf="paymentAmount">
+        <mat-card class="example-card" style="border-radius: .5rem!important;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>Subscription Payment</span>
+              <br><br>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <b>
+                payment to be made:
+              </b>
+              <br>
+              Amount: ${{paymentAmount.amount | number:'1.2-2'}}
+              <br>
+              Tax: ${{paymentAmount.tax | number:'1.2-2'}}
+              <br>
+              Total: ${{paymentAmount.amount+paymentAmount.tax | number:'1.2-2'}}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <button mat-raised-button (click)='performPayment()'>Pay amount</button>
+        </mat-card>
+
+      </div>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td style="padding: 20px">
+
+    </td>
+    <td style="padding: 20px" hidden=true>
+      <div *ngIf="followersData">
+        <mat-card class="example-card" style="border-radius: .5rem!important;">
+          <img src="assets/images/userFollowers.gif" style="height: 80px;width: 80px;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>User Followers</span>
+              <br><br>
+            </mat-card-title>
+            <mat-card-subtitle *ngFor="let follower of followersData.followers">
+              <b> Follower Id :{{follower.userId}} &nbsp;&nbsp; Follower Name :{{follower.userName}}</b><br>
+            </mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+      </div>
+    </td>
+
+
+  </tr>
+</table>
+
+<div *ngIf="userPostsData">
+  <mat-card style="border-radius: .5rem!important;">
+    <img src="assets/images/userPosts.png" style="height: 80px;width: 80px;">
+    <mat-card-header>
+      <mat-card-title>
+        <span>User Posts</span>
+        <br><br>
+      </mat-card-title>
+
+      <mat-card-subtitle *ngFor="let userPost of userPostsData.posts">
+        <mat-card style="border-radius: .5rem!important;">
+          <mat-card-header>
+            <mat-card-title>
+              <span>Channel: <b>{{ userPost.channelName}}</b></span>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <b> Post: {{userPost.postText}}</b><br>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)='postDetails(userPost.postId)'>View Post</button>
+            {{userPost.datePosted}}
+          </mat-card-actions>
+        </mat-card>
+      </mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>

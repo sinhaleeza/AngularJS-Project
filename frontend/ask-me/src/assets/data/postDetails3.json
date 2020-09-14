@@ -1,0 +1,15 @@
+{
+      "postId": 3,
+      "postText": "How many are affected so far in the USA?",
+      "profane": false,
+      "author": "Charu",
+      "authorId": 4,
+      "likesCount": 76,
+      "datePosted": "12 March 2020",
+      "tags": [
+        {
+          "tagId": 1,
+          "tagName": "#CoronaVirus"
+        }
+      ]
+}

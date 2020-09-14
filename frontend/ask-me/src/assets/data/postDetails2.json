@@ -1,0 +1,15 @@
+{
+      "postId": 2,
+      "postText": "What are the coronavirus symptoms?",
+      "profane": false,
+      "author": "Gaurav",
+      "authorId": 3,
+      "likesCount": 100,
+      "datePosted": "27 Feb 2020",
+      "tags": [
+        {
+          "tagId": 1,
+          "tagName": "#CoronaVirus"
+        }
+      ]
+}
